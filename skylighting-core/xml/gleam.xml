@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<!--
+  Gleam language syntax highlighting definition for Skylighting
+  Author: MLC Bloeiman (@strawmelonjuice)
+  License: Apache 2.0 (like the gleam compiler)
+  Description: Syntax definition for the Gleam programming language
+-->
+<language name="Gleam" version="1.0" kateversion="5.0" section="Programming" extensions="*.gleam" author="MLC Bloeiman (@strawmelonjuice)" license="Apache-2.0">
+  <highlighting>
+    <list name="visibility">
+      <item>pub</item>
+      <item>opaque</item>
+    </list>
+    <list name="runtime">
+      <item>@external</item>
+      <item>@target</item>
+    </list>
+    <list name="topleveldef">
+      <item>fn</item>
+      <item>type</item>
+      <item>const</item>
+    </list>
+    <list name="functionlevel">
+      <item>let</item>
+      <item>import</item>
+      <item>as</item>
+      <item>case</item>
+      <item>of</item>
+      <item>assert</item>
+      <item>use</item>
+      <item>external</item>
+    </list>
+    <list name="nonprod">
+      <item>echo</item>
+      <item>todo</item>
+      <item>panic</item>
+    </list>
+    <list name="specials">
+      <item>True</item>
+      <item>False</item>
+      <item>Nil</item>
+    </list>
+    <list name="types">
+      <item>Int</item>
+      <item>Float</item>
+      <item>String</item>
+      <item>Bool</item>
+      <item>List</item>
+      <item>Result</item>
+      <item>Option</item>
+      <item>Ok</item>
+      <item>Error</item>
+      <item>Some</item>
+      <item>None</item>
+    </list>
+    <list name="operators">
+      <item>+</item>
+      <item>-</item>
+      <item>*</item>
+      <item>/</item>
+      <item>%</item>
+      <item>==</item>
+      <item>!=</item>
+      <item>&gt;</item>
+      <item>&lt;</item>
+      <item>&gt;=</item>
+      <item>&lt;=</item>
+      <item>&amp;&amp;</item>
+      <item>||</item>
+      <item>!</item>
+      <item>|&gt;</item>
+    </list>
+    <list name="arrows">
+      <item>-&gt;</item>
+      <item>&lt;-</item>
+    </list>
+    <contexts>
+      <context name="Normal Text" attribute="Normal Text" lineEndContext="#stay">
+        <keyword attribute="Visibility" context="#stay" String="visibility" />
+        <keyword attribute="Runtime" context="#stay" String="runtime" />
+        <keyword attribute="TopLevelDef" context="#stay" String="topleveldef" />
+        <keyword attribute="FunctionLevel" context="#stay" String="functionlevel" />
+        <keyword attribute="NonProd" context="#stay" String="nonprod" />
+        <keyword attribute="Special" context="#stay" String="specials" />
+        <keyword attribute="Type" context="#stay" String="types" />
+        <keyword attribute="Operator" context="#stay" String="operators" />
+        <keyword attribute="Arrow" context="#stay" String="arrows" />
+        <RegExpr attribute="Comment" context="#stay" String="//.*$" />
+        <RegExpr attribute="DocComment" context="#stay" String="///.*$" />
+        <RegExpr attribute="DocComment" context="#stay" String="////.*$" />
+        <RegExpr attribute="String" context="string" String='"' />
+        <RegExpr attribute="Number" context="#stay" String="\b\d+(?:_\d+)*(?:\.\d+)?(?:e[+-]?\d+)?\b" />
+        <RegExpr attribute="Constructor" context="#stay" String="\b[A-Z][A-Za-z0-9_]*\b" />
+        <!-- Highlight function names after fn/ pub fn as Variable -->
+        <RegExpr attribute="Variable" context="#stay" String='\b(?:pub\s+)?fn\s+([a-z_][A-Za-z0-9_]*)' />
+        <RegExpr attribute="Variable" context="#stay" String="\b[a-z_][A-Za-z0-9_]*\b" />
+        <AnyChar attribute="Normal Text" context="#stay" />
+      </context>
+      <context name="string" attribute="String" lineEndContext="#pop">
+        <RegExpr attribute="String" context="#pop" String='"' />
+        <RegExpr attribute="Escape" context="#stay" String='\\[fnrt"\\]' />
+        <AnyChar attribute="String" context="#stay" />
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" />
+      <itemData name="Visibility" defStyleNum="dsKeyword" />
+      <itemData name="Runtime" defStyleNum="dsOthers" />
+      <itemData name="TopLevelDef" defStyleNum="dsFunction" />
+      <itemData name="FunctionLevel" defStyleNum="dsControlFlow" />
+      <itemData name="NonProd" defStyleNum="dsAlert" />
+      <itemData name="Special" defStyleNum="dsConstant" />
+      <itemData name="Type" defStyleNum="dsDataType" />
+      <itemData name="Operator" defStyleNum="dsOperator" />
+      <itemData name="Arrow" defStyleNum="dsBuiltIn" />
+      <itemData name="Comment" defStyleNum="dsComment" />
+      <itemData name="DocComment" defStyleNum="dsComment" />
+      <itemData name="String" defStyleNum="dsString" />
+      <itemData name="Escape" defStyleNum="dsChar" />
+      <itemData name="Number" defStyleNum="dsDecVal" />
+      <itemData name="Constructor" defStyleNum="dsFunction" />
+      <itemData name="Variable" defStyleNum="dsVariable" />
+    </itemDatas>
+  </highlighting>
+  <general>
+    <comments>
+      <comment name="singleLine" start="//" />
+    </comments>
+    <keywords casesensitive="1" />
+  </general>
+</language>
